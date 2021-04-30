@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Minimal Django File Upload Example</title>
+  </head>
+  <body>
+    <form
+      action="{% url 'project' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <p>{{ form.non_field_errors }}</p>
+      <p>{{ form.imagefile.label_tag }} {{ form.imagefile.help_text }}</p>
+      <p>{{ form.imagefile.errors }} {{ form.imagefile }}</p>
+      <p><input type="submit" value="Upload" /></p>
+    </form>
+
+    <h4>Prediction: {{pred}}</h4>
+
+    {% if images %}
+    <ul>
+      {% for image in images %}
+      <li>
+        <img src="{{ image.image.url }}" alt="img" width="64" height="64" />
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No documents.</p>
+    {% endif %}
+  </body>
+</html>
