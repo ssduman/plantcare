@@ -58,10 +58,9 @@ sqlparse==0.3.1
 srsly==1.0.2
 terminado==0.8.3
 testpath==0.4.4
-torch==1.6.0
-torchsummary==1.5.1
-torchtext==0.7.0
-torchvision==0.7.0
+torch==1.7.1
+torchtext==0.8.0
+torchvision==0.8.2
 tornado==6.0.4
 traitlets==4.3.3
 typing-extensions==3.7.4.3
