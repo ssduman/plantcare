@@ -1,5 +1,4 @@
 import os
-import cv2
 import json
 import torch
 import datetime
@@ -8,13 +7,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from PIL import Image
-from tqdm import tqdm
-from matplotlib import cm
-from matplotlib.image import imread
-from matplotlib import pyplot as plt
-from torchsummary import summary
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
 from torchvision import datasets, transforms, models
 
 class PlantDataset(torch.utils.data.Dataset):
