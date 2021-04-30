@@ -59,9 +59,5 @@ srsly==1.0.2
 terminado==0.8.3
 testpath==0.4.4
 torch==1.7.1
-torchtext==0.8.0
+torchtext==0.8.1
 torchvision==0.8.2
-tornado==6.0.4
-traitlets==4.3.3
-typing-extensions==3.7.4.3
-webencodings==0.5.1
