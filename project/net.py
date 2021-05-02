@@ -22,7 +22,8 @@ class PlantDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         img = Image.open(self.data_path[idx])
-        img = np.array(img.convert("RGB"))
+        img = img.convert("RGB")
+        img = np.array(img.resize((256, 256)))
         if self.transform:
             img = self.transform(img)
 
