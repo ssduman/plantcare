@@ -1,5 +1,4 @@
 import os
-import cv2
 import json
 import torch
 import datetime
@@ -23,7 +22,8 @@ class PlantDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         img = Image.open(self.data_path[idx])
-        img = np.array(img.convert("RGB"))
+        img = img.convert("RGB")
+        img = np.array(img.resize((256, 256)))
         if self.transform:
             img = self.transform(img)
 
@@ -60,7 +60,8 @@ class Net(nn.Module):
 
         return F.log_softmax(x, dim=1)
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
+
 def test(model, test_loader):
     model.eval()
     with torch.no_grad():
@@ -72,5 +73,4 @@ def test(model, test_loader):
             return output, pred
 
 model = Net(2).to(device)
-model.load_state_dict(torch.load("project/static/plant_model.pth"))
-#model.load_state_dict(torch.load("project/static/plant_model.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("project/static/plant_model.pth", map_location=torch.device("cpu")))
