@@ -8,13 +8,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from PIL import Image
-from tqdm import tqdm
-from matplotlib import cm
-from matplotlib.image import imread
-from matplotlib import pyplot as plt
-from torchsummary import summary
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
 from torchvision import datasets, transforms, models
 
 class PlantDataset(torch.utils.data.Dataset):
@@ -68,7 +61,6 @@ class Net(nn.Module):
         return F.log_softmax(x, dim=1)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
 def test(model, test_loader):
     model.eval()
     with torch.no_grad():
@@ -81,3 +73,4 @@ def test(model, test_loader):
 
 model = Net(2).to(device)
 model.load_state_dict(torch.load("project/static/plant_model.pth"))
+#model.load_state_dict(torch.load("project/static/plant_model.pth", map_location=torch.device('cpu')))
