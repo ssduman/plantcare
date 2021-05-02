@@ -1,33 +1,219 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Minimal Django File Upload Example</title>
-  </head>
-  <body>
+<title>Leaf Classification</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://cid-inc.com/static/media/uploads/blog/.thumbnails/leaf_area.jpg/leaf_area-800x500.jpg");
+  min-height: 80%;
+  min-width: 80%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="" class="w3-bar-item w3-button w3-wide">LOGO</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+
+
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-center" style="padding:80px">Start Leaf Detection Application Now!</span><br>
+
+    <div class="w3-container w3-center">
     <form
       action="{% url 'project' %}"
       method="post"
       enctype="multipart/form-data"
+      class="w3-button w3-green w3-padding-large w3-large w3-margin-top"
     >
       {% csrf_token %}
       <p>{{ form.non_field_errors }}</p>
       <p>{{ form.imagefile.label_tag }} {{ form.imagefile.help_text }}</p>
       <p>{{ form.imagefile.errors }} {{ form.imagefile }}</p>
-      <p><input type="submit" value="Upload" /></p>
+      <p ><input type="submit" value="Upload" class="w3-button w3-block w3-teal" style="width:50%"/></p>
     </form>
+      <h1 style="text-shadow:2px 2px 0 #444">Prediction: {{pred}}</h1>
+    </div>
+  </div>
+</header>
 
-    <h4>Prediction: {{pred}}</h4>
+
+
+
+
+
+<div class="w3-container" style="padding:50px 40px">
+    <h2 class="w3-center">Sample Image List</h2>
 
     {% if images %}
-    <ul>
-      {% for image in images %}
-      <li>
-        <img src="{{ image.image.url }}" alt="img" width="64" height="64" />
-      </li>
-      {% endfor %}
-    </ul>
+    <div style="width:100%">
+  {% for image in images %}
+      <div style="float:left; width:200px; padding:2px; height:200px;">
+          <img src="{{ image.image.url }}"alt="img" width="180" height="180">
+      </div>
+  {% endfor%}
+  </div>
     {% else %}
     <p>No documents.</p>
     {% endif %}
-  </body>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 80px" id="about">
+  <h3 class="w3-center">ABOUT THE PROJECT</h3>
+  <p class="w3-center w3-large">Key features of our BBM-416 Project</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+
+</div>
+
+
+
+<!-- Team Section -->
+<div class="w3-container" style="padding:50px 200px" id="team">
+  <h3 class="w3-center">THE TEAM</h3>
+  <p class="w3-center w3-large">The ones who runs this BBM-416 Project</p>
+  <div class="w3-row-padding w3-grayscale w3-center" style="margin-top:64px">
+
+
+    <div class="w3-col l3 m6 w3-margin-bottom w3-center" >
+      <div class="w3-card">
+        <div class="w3-container">
+          <h3>Samet</h3>
+          <p class="w3-opacity">Developer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom w3-center">
+      <div class="w3-card">
+        <div class="w3-container">
+          <h3>Eren</h3>
+          <p class="w3-opacity">Developer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+        <div class="w3-col l3 m6 w3-margin-bottom w3-center">
+      <div class="w3-card">
+        <div class="w3-container">
+          <h3>Yusuf Emre</h3>
+          <p class="w3-opacity">Developer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
 </html>
+
+
+
