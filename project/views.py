@@ -1,4 +1,5 @@
 import glob
+import time
 import torch
 import pathlib
 import os.path
@@ -42,10 +43,24 @@ class ProjectView(View):
             outputType, predType = test(modelType, test_loader)
             predType = leaf_types_map_inv[predType.cpu().numpy()[0][0]]
 
-            if os.path.isfile("manage.py"):
-                print("******EXIST**********")
+            # result = subprocess.Popen(
+            #     [
+            #         'python', './project/static/yolov5/detect.py',
+            #         '--weights', './project/static/best.pt',
+            #         '--project', './media/image',
+            #         '--img', '256',
+            #         '--conf', '0.4',
+            #         '--source', image_path[0]
+            #     ],
+            #     shell=True,
+            #     universal_newlines=True,
+            #     stdout=subprocess.PIPE,
+            #     stderr=subprocess.PIPE
+            # )
+            # output, error = result.communicate()
+            # print("output, error:", output, error)
 
-            result = subprocess.Popen(
+            output = subprocess.check_output(
                 [
                     'python', './project/static/yolov5/detect.py',
                     '--weights', './project/static/best.pt',
@@ -54,31 +69,15 @@ class ProjectView(View):
                     '--conf', '0.4',
                     '--source', image_path[0]
                 ],
-                shell=True,
-                universal_newlines=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )
+                universal_newlines=True
+            ) # .decode("utf-8")
+            # print("output:", output)
 
-            output, error = result.communicate()
-            print("output, error:", output, error)
-            
-            print("subprocess.check_output:", subprocess.check_output(
-                [
-                    'python', './project/static/yolov5/detect.py',
-                    '--weights', './project/static/best.pt',
-                    '--project', './media/image',
-                    '--img', '256',
-                    '--conf', '0.4',
-                    '--source', image_path[0]
-                ],
-            ))
-            
             f1 = "Results saved to "
             i1 = output.find(f1)
             i2 = output.find("\nDone. (")
             bbox_dir = output[i1 + len(f1):i2]
-            
+
             f1 = "256x256 "
             i1 = output.find(f1)
             i2 = output.find(", Done. (")
