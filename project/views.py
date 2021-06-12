@@ -1,3 +1,4 @@
+import re
 import glob
 import time
 import torch
@@ -78,10 +79,11 @@ class ProjectView(View):
             i2 = output.find("\nDone. (")
             bbox_dir = output[i1 + len(f1):i2]
 
-            f1 = "256x256 "
-            i1 = output.find(f1)
+            f1 = re.search(r" \d+x\d+ ", output).span()
+            i1 = f1[1]
             i2 = output.find(", Done. (")
-            YOLOleafType = output[i1 + len(f1):i2].split(" ")[1]
+            YOLOleafType = output[i1:i2].split(" ", 1)[1]
+
 
             images = ImageModel.objects.all()
             form = ImageForm()
