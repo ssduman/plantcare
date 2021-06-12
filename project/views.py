@@ -59,8 +59,20 @@ class ProjectView(View):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
+
             output, error = result.communicate()
             print("output, error:", output, error)
+            
+            print("subprocess.check_output:", subprocess.check_output(
+                [
+                    'python', './project/static/yolov5/detect.py',
+                    '--weights', './project/static/best.pt',
+                    '--project', './media/image',
+                    '--img', '256',
+                    '--conf', '0.4',
+                    '--source', image_path[0]
+                ],
+            ))
             
             f1 = "Results saved to "
             i1 = output.find(f1)
