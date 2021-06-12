@@ -7,11 +7,11 @@ from copy import copy
 from pathlib import Path
 
 import cv2
-import matplotlib
-import matplotlib.pyplot as plt
+# import matplotlib
+# import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sn
+# import seaborn as sn
 import torch
 import yaml
 from PIL import Image, ImageDraw, ImageFont
@@ -20,8 +20,8 @@ from utils.general import xywh2xyxy, xyxy2xywh
 from utils.metrics import fitness
 
 # Settings
-matplotlib.rc('font', **{'size': 11})
-matplotlib.use('Agg')  # for writing to files only
+# matplotlib.rc('font', **{'size': 11})
+# matplotlib.use('Agg')  # for writing to files only
 
 
 class Colors:
@@ -55,7 +55,7 @@ def hist2d(x, y, n=100):
 
 
 def butter_lowpass_filtfilt(data, cutoff=1500, fs=50000, order=5):
-    from scipy.signal import butter, filtfilt
+    # from scipy.signal import butter, filtfilt
 
     # https://stackoverflow.com/questions/28536191/how-to-filter-smooth-with-scipy-numpy
     def butter_lowpass(cutoff, fs, order):

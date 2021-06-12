@@ -20,7 +20,7 @@ import torch.nn.functional as F
 import yaml
 from PIL import Image, ExifTags
 from torch.utils.data import Dataset
-from tqdm import tqdm
+# from tqdm import tqdm
 
 from utils.general import check_requirements, check_file, check_dataset, xyxy2xywh, xywh2xyxy, xywhn2xyxy, xyn2xy, \
     segment2box, segments2boxes, resample_segments, clean_str

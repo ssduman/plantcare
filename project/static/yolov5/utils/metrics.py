@@ -3,7 +3,7 @@
 import warnings
 from pathlib import Path
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
@@ -160,7 +160,7 @@ class ConfusionMatrix:
 
     def plot(self, normalize=True, save_dir='', names=()):
         try:
-            import seaborn as sn
+            # import seaborn as sn
 
             array = self.matrix / ((self.matrix.sum(0).reshape(1, -1) + 1E-6) if normalize else 1)  # normalize columns
             array[array < 0.005] = np.nan  # don't annotate (would appear as 0.00)

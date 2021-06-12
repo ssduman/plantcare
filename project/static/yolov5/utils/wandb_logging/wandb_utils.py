@@ -5,7 +5,7 @@ from pathlib import Path
 
 import torch
 import yaml
-from tqdm import tqdm
+# from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).parent.parent.parent))  # add utils/ to path
 from utils.datasets import LoadImagesAndLabels

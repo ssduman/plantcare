@@ -20,12 +20,12 @@ torchvision==0.8.2+cpu
 typing-extensions==3.7.4.3
 wheel==0.36.2
 wincertstore==0.2
-matplotlib>=3.2.2
+# matplotlib>=3.2.2
 opencv-python-headless>=4.1.2
 PyYAML>=5.3.1
-scipy>=1.4.1
-tqdm>=4.41.0
-tensorboard>=2.4.1
-seaborn>=0.11.0
+# scipy>=1.4.1
+# tqdm>=4.41.0
+# tensorboard>=2.4.1
+# seaborn>=0.11.0
 pandas
-thop
+# thop

@@ -7,7 +7,7 @@ from threading import Thread
 import numpy as np
 import torch
 import yaml
-from tqdm import tqdm
+# from tqdm import tqdm
 
 from models.experimental import attempt_load
 from utils.datasets import create_dataloader
@@ -320,7 +320,7 @@ if __name__ == '__main__':
     opt.save_txt |= opt.save_hybrid
     opt.data = check_file(opt.data)  # check file
     print(opt)
-    check_requirements(exclude=('tensorboard', 'thop'))
+    # check_requirements(exclude=('tensorboard', 'thop'))
 
     if opt.task in ('train', 'val', 'test'):  # run normally
         test(**vars(opt))

@@ -3,7 +3,7 @@
 import numpy as np
 import torch
 import yaml
-from tqdm import tqdm
+# from tqdm import tqdm
 
 from utils.general import colorstr
 
@@ -75,7 +75,7 @@ def kmean_anchors(path='./data/coco128.yaml', n=9, img_size=640, thr=4.0, gen=10
         Usage:
             from utils.autoanchor import *; _ = kmean_anchors()
     """
-    from scipy.cluster.vq import kmeans
+    # from scipy.cluster.vq import kmeans
 
     thr = 1. / thr
     prefix = colorstr('autoanchor: ')
