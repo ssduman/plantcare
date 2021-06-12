@@ -56,6 +56,7 @@ class ProjectView(View):
                 stderr=subprocess.PIPE
             )
             output, error = result.communicate()
+            print("output, error:", output, error)
             
             f1 = "Results saved to "
             i1 = output.find(f1)
