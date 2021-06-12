@@ -1,6 +1,7 @@
 import glob
 import torch
 import pathlib
+import os.path
 import datetime
 import subprocess
 
@@ -41,11 +42,14 @@ class ProjectView(View):
             outputType, predType = test(modelType, test_loader)
             predType = leaf_types_map_inv[predType.cpu().numpy()[0][0]]
 
+            if os.path.isfile("manage.py"):
+                print("******EXIST**********")
+
             result = subprocess.Popen(
                 [
-                    'python', 'project/static/yolov5/detect.py',
-                    '--weights', 'project/static/best.pt',
-                    '--project', 'media/image',
+                    'python', './project/static/yolov5/detect.py',
+                    '--weights', './project/static/best.pt',
+                    '--project', './media/image',
                     '--img', '256',
                     '--conf', '0.4',
                     '--source', image_path[0]
