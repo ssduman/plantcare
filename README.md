@@ -5,13 +5,13 @@
 * Recognizes apple, blueberry, cherry, corn, grape, orange, peach, pepper bell, potato, raspberry, soybean, squash, strawberry and tomato.
 ## Dependencies: ##
 * PyTorch
-* YoloV5
-   - modified, some imports are deleted to fit to Heroku
+* [YoloV5](https://github.com/ultralytics/yolov5)
+   - modified, some imports are deleted to fit to Heroku.
 * OpenCV
 * Django
 * Pillow
 ## Run: ##
-* Clone the repository, `pip install -r requirements.txt`, `python manage.py migrate`, `python manage.py makemigrations` then `python manage.py runserver`
+* Clone the repository, run `pip install -r requirements.txt`, `python manage.py migrate`, `python manage.py makemigrations` then `python manage.py runserver`
 ## Datasets: ##
 * PlantVillage
 * PlantDoc
@@ -32,4 +32,4 @@
 </table>
 
 ### Bugs and Limitations: ###
-* Due to Heroku, CPU version of PyTorch is used, so it is little slow
+* Due to Heroku, CPU version of PyTorch is used, so it is little slow.
