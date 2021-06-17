@@ -1,7 +1,8 @@
 # PlantCare # 
-* Predicts leaf type, whether infected or not and location of leafs
+* Web application for leafs: https://bbm416-plant.herokuapp.com/
 ## Specifications: ##
-* Predicts in 6-8 seconds
+* Predicts leaf type, whether infected or not and location of leafs in 10 seconds.
+* Recognizes apple, blueberry, cherry, corn, grape, orange, peach, pepper bell, potato, raspberry, soybean, squash, strawberry and tomato.
 ## Dependencies: ##
 * PyTorch
 * YoloV5
