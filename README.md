@@ -1,5 +1,5 @@
 # PlantCare # 
-* Web application for leafs: https://bbm416-plant.herokuapp.com/
+* Web application for leafs.
 ## Specifications: ##
 * Predicts leaf type, whether infected or not and location of leafs in 10 seconds.
 * Recognizes apple, blueberry, cherry, corn, grape, orange, peach, pepper bell, potato, raspberry, soybean, squash, strawberry and tomato.
@@ -30,6 +30,3 @@
         </td>
     </tr>
 </table>
-
-### Bugs and Limitations: ###
-* Due to Heroku, CPU version of PyTorch is used, so it is little slow.
